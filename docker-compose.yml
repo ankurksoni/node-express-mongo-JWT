@@ -2,10 +2,14 @@ services:
 
   mongo:
     image: mongo:6.0.5
+    restart: always
     ports:
       - '27017:27017'
-    volumes:
-      - dbdata6:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 20s
+      timeout: 10s
+      retries: 2
 
   node-jwt:
     image: node-jwt
@@ -13,7 +17,7 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      db:
+      mongo:
         condition: "service_healthy"
     healthcheck:
       test: curl http://localhost:3000/health || exit 1

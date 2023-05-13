@@ -11,11 +11,11 @@ app.set('view engine', 'ejs');
 
 // routes
 app.get('/', (req, res) => res.render('home'));
-app.get('/health', (req, res) => res.render('health'));
+app.get('/health', (req, res) => res.send('health: success'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
 
 // database connection
-const dbURI = 'mongodb://localhost:27017/node-auth';
+const dbURI = 'mongodb://mongo:27017/node-auth';
 mongoose.connect(dbURI, {
     useNewUrlParser: true, 
     useUnifiedTopology: true, 

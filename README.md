@@ -16,3 +16,5 @@ prerequisites
 5. Run command `npm install nodemon  -g`
 6. Run command `nodemon app`
 7. Goto : http://localhost:3000
+
+docker-compose down;docker rmi $(docker images -f "dangling=true" -q); docker system prune; docker build -t node-jwt --no-cache .
