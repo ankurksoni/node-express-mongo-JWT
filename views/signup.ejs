@@ -16,10 +16,21 @@
 
     <script>
         const form = document.querySelector('form');
+        const emailError = document.querySelector('.email.error');
+        const passwordError = document.querySelector('.password.error');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // reset errors
+            if (emailError) {
+                emailError.textContent = '';
+            }
+            if (passwordError) {
+                passwordError.textContent = '';
+            }
+
+            // Get form values
             const email = form.email.value;
             const password = form.password.value;
 
@@ -29,8 +40,20 @@
                     body: JSON.stringify({ email, password }),
                     headers: { 'Content-Type': 'application/json' }
                 });
+                const data = await res.json();
+                console.log(`RESPONSE: `, JSON.stringify(data));
+                if (data.error) {
+                    if (emailError) {
+                        emailError.textContent = data.error.email
+                    }
+                    if (passwordError) {
+                        passwordError.textContent = data.error.password
+                    }
+                } else if (data.user) {
+                    location.assign('/')
+                }
             } catch (e) {
-
+                console.log(`Error: `. e);
             }
         });
     </script>
