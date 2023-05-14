@@ -43,7 +43,6 @@
                     headers: { 'Content-Type': 'application/json' }
                 });
                 const data = await res.json();
-                console.log(`RESPONSE: `, JSON.stringify(data));
                 if (data.error) {
                     if (emailError) {
                         emailError.textContent = data.error.email

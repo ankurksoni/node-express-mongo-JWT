@@ -13,7 +13,11 @@ WORKDIR /usr/src/app
 ADD --chown=node:node package.json ./
 ADD --chown=node:node package-lock.json ./
 ADD --chown=node:node public ./public
+ADD --chown=node:node middleware ./middleware
+ADD --chown=node:node models ./models
 ADD --chown=node:node views ./views
+ADD --chown=node:node controller ./controller
+ADD --chown=node:node routes ./routes
 ADD --chown=node:node app.js ./
 
 # This command will not install upgraded pkgs. for more visit link
@@ -35,6 +39,10 @@ COPY --chown=node:node --from=PROD_BUILD_INTERMEDIATE /usr/src/app/package.json 
 COPY --chown=node:node --from=PROD_BUILD_INTERMEDIATE /usr/src/app/package-lock.json /opt/node-jwt
 COPY --chown=node:node --from=PROD_BUILD_INTERMEDIATE /usr/src/app/public /opt/node-jwt/public
 COPY --chown=node:node --from=PROD_BUILD_INTERMEDIATE /usr/src/app/views /opt/node-jwt/views
+COPY --chown=node:node --from=PROD_BUILD_INTERMEDIATE /usr/src/app/middleware /opt/node-jwt/middleware
+COPY --chown=node:node --from=PROD_BUILD_INTERMEDIATE /usr/src/app/controller /opt/node-jwt/controller
+COPY --chown=node:node --from=PROD_BUILD_INTERMEDIATE /usr/src/app/routes /opt/node-jwt/routes
+COPY --chown=node:node --from=PROD_BUILD_INTERMEDIATE /usr/src/app/models /opt/node-jwt/models
 COPY --chown=node:node --from=PROD_BUILD_INTERMEDIATE /usr/src/app/app.js /opt/node-jwt
 
 RUN apk add --no-cache curl

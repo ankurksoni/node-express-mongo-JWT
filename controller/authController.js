@@ -5,8 +5,6 @@ const JWT = require('jsonwebtoken');
 const maxAge = 3 * 24 * 60 * 60;
 
 const handleErrors = (err) => {
-    console.log(err.message, err.code);
-
     let error = {};
 
     // incorrect email
@@ -72,4 +70,9 @@ module.exports.login_post = async (req, res) => {
         const error = handleErrors(err);
         res.status(400).json({ error });
     }
+}
+
+module.exports.logout_get = (req, res) => {
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.redirect('/');
 }
