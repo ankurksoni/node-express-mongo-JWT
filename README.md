@@ -2,13 +2,14 @@
 
 A Node.js App with below features,
 
-* express framework.
+* Express framework.
 * MongoDB and mongoose framework.
 * JWT token implementation.
-* end to end simple flow for landing page, sign up, login, logout, authorized page. 
+* End to end simple flow for landing page, sign up, login, logout, authorized page.
+* Everything dockerized with end to end working model, has best practices implemented.
 
 
-prerequisites
+## Prerequisites
 ---------------
 1. Make sure you have docker engine installed.
 2. Clone master repository on your local master. Build and create a docker image with below command,
@@ -34,3 +35,5 @@ prerequisites
     d. You must be able to see `http://localhost:3000` entry.
 
     e. a key name `jwt` will get added when you login to the system.
+
+6. to shutdown containers, run `docker-compose down`
