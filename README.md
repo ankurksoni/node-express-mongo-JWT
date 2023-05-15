@@ -16,6 +16,14 @@ A Node.js App with below features,
 
     ```bash
     docker-compose down;docker rmi $(docker images -f "dangling=true" -q); docker system prune; docker build -t node-jwt --no-cache .
+
+    OR
+
+    docker-compose down node-jwt;docker rmi $(docker images -f "dangling=true" -q); docker system prune; docker-compose up --build -d
+
+    OR
+
+    docker-compose down;docker rmi $(docker images -f "dangling=true" -q); docker system prune; docker-compose up --build -d
     ```
 3. run command `docker-compose up -d`, you must see below output,
     ```bash
