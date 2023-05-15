@@ -12,7 +12,10 @@ services:
       retries: 2
 
   node-jwt:
-    image: node-jwt
+    build: .
+    volumes: 
+      - .:/opt/node-jwt/
+    # image: node-jwt
     restart: always
     ports:
       - 3000:3000
